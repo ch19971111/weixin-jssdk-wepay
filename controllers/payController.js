@@ -26,9 +26,9 @@ const  getSign = (options,key)=>{
 const pay = async (ctx,next)=>{
     let appid = 'wx100749d4612ea385'
     let mch_id = '1448624302'
-    let nonce_str = tools.randomStr()
-    let body = '测试支付CH'
-    let out_trade_no = new Date().getTime()
+    let nonce_str = tools.randomStr() // 随机字符串
+    let body = '测试支付CH'   // 订单信息
+    let out_trade_no = new Date().getTime() // 订单编号
     let total_fee	= 1
     let spbill_create_ip = '123.12.12.123'
     let notify_url = 'https://luckych.club/wxpay'
@@ -85,7 +85,11 @@ const pay = async (ctx,next)=>{
     const image = await imagefunc()
     
     ctx.set("Content-Type", "application/json")
-    ctx.body = JSON.stringify({image})
+    ctx.body = JSON.stringify(
+        {
+            image,
+            orderNumber: out_trade_no
+        })
 
 }
 

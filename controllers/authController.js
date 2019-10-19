@@ -4,7 +4,6 @@ const getRawBody = require('raw-body')
 const contentType = require('content-type')
 const convert = require('xml-js')
 const auth = (ctx,next)=>{
-    console.log(ctx.query)
     let {signature,echostr,timestamp,nonce} = ctx.query
     let orderedQueryString = [config.token,timestamp,nonce].sort().join('')
     let mySignature = tools.sha1(orderedQueryString)
@@ -28,7 +27,7 @@ const reply = async (ctx,next)=>{
      ToUserName,
      FromUserName,
      timestamp:1234,
-     Content:'<a href="https://luckych.club/auth">惊喜</a>'
+     Content:'<a href="https://luckych.club">惊喜</a>'
    })
 }
 
